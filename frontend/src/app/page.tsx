@@ -14,6 +14,7 @@ import {
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Separator } from "@/components/ui/separator"
+import { BearCounter, Controls } from "@/components/exampleBears"
 
 export default function Home() {
   return (
@@ -110,6 +111,11 @@ export default function Home() {
             <Badge variant="destructive">Destructive</Badge>
           </CardContent>
         </Card>
+
+        <BearCounter />
+        <Controls />
+
+
       </div>
     </div>
   )

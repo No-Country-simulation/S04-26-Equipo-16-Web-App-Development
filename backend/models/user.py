@@ -1,14 +1,10 @@
 from sqlalchemy import Integer, ForeignKey, String, Boolean, DateTime
 from sqlalchemy.orm import relationship, Mapped, mapped_column
 from backend.config.connection import Base
-from enum import StrEnum
 from datetime import datetime
+from backend.utils.enum_roles import Roles
 
-class Roles(StrEnum):
-    ADMIN = "ADMIN"
-    CLIENT = "CLIENT"
-    OPERATOR = "OPERATOR"
-    USER =  "USER"
+
 
 class User(Base):
     __tablename__ = "users"

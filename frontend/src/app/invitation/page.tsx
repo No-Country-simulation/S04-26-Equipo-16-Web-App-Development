@@ -29,55 +29,59 @@ export default async function InvitationPage({ searchParams }: InvitationPagePro
   const token = params.token ?? "";
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-slate-50 to-slate-100 p-4 sm:p-6 lg:p-8">
-      <div className="w-full max-w-4xl overflow-hidden rounded-2xl bg-white shadow-xl shadow-slate-200/50 ring-1 ring-slate-200/60">
+    <div className="relative flex min-h-screen items-center justify-center p-4 sm:p-6 lg:p-8 overflow-hidden">
+      {/* Espectacular fondo de imagen abstracto en tonos AZULES para que combine con la marca */}
+      <div 
+        className="absolute inset-0 z-0 bg-[url('https://images.unsplash.com/photo-1557683311-eac922347aa1?q=80&w=2000&auto=format&fit=crop')] bg-cover bg-center bg-no-repeat"
+      >
+        {/* Fuerte desenfoque (blur) y oscurecimiento para mantener el contraste */}
+        <div className="absolute inset-0 bg-slate-900/40 backdrop-blur-3xl" />
+      </div>
+
+      {/* Tarjeta principal con efecto Glassmorphism */}
+      <div className="relative z-10 w-full max-w-4xl overflow-hidden rounded-3xl bg-white/95 backdrop-blur-2xl shadow-2xl shadow-blue-900/40 ring-1 ring-white/60">
         <div className="grid grid-cols-1 lg:grid-cols-[2fr_3fr]">
           {/* Left Panel - Branding */}
-          <div className="relative hidden lg:block">
-            <div className="absolute inset-0 bg-gradient-to-b from-primary via-primary/95 to-primary/85" />
+          <div className="relative hidden lg:block overflow-hidden bg-[#005B9F]">
+            
+            {/* Contenedor ESTRICTO que recorta el exceso de blanco que viene pegado en la parte superior e inferior del archivo logo.png.
+                Al limitar la altura (h-[60%]), el overflow-hidden guillotina el color blanco. */}
+            <div className="absolute top-1/2 left-0 w-full h-[65%] -translate-y-1/2 overflow-hidden">
+              <Image
+                src="/logo.png"
+                alt="NorthPay"
+                fill
+                sizes="(max-width: 1024px) 100vw, 40vw"
+                className="object-cover object-center scale-[1.6]"
+                priority
+              />
+              
+              {/* MAGIA DE SOMBREADO (BLENDING): 
+                  Funde el borde superior e inferior de la imagen con el color exacto del panel (#005B9F)
+                  para ocultar mágicamente cualquier diferencia de tono de azul. */}
+              <div className="absolute top-0 left-0 w-full h-20 bg-gradient-to-b from-[#005B9F] via-[#005B9F]/70 to-transparent pointer-events-none" />
+              <div className="absolute bottom-0 left-0 w-full h-20 bg-gradient-to-t from-[#005B9F] via-[#005B9F]/70 to-transparent pointer-events-none" />
+            </div>
+            
+            {/* Sombra para el texto de abajo */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent pointer-events-none" />
 
-            <div className="relative flex h-full min-h-[520px] flex-col justify-between p-8">
-              {/* Logo */}
-              <div className="flex items-start">
-                <div className="rounded-lg bg-white p-2 shadow-md">
-                  <Image
-                    src="/logo.png"
-                    alt="NorthPay"
-                    width={40}
-                    height={40}
-                    className="rounded"
-                    priority
-                  />
-                </div>
-              </div>
-
-              {/* Watermark Typography */}
-              <div className="select-none">
-                <div
-                  className="text-[4.5rem] font-black leading-[0.9] tracking-tighter text-white/10"
-                  aria-hidden="true"
-                >
-                  NORTH
-                  <br />
-                  PAY
-                </div>
-              </div>
-
+            <div className="relative z-10 flex h-full min-h-[520px] flex-col justify-end p-8">
               {/* Platform Label */}
               <div>
-                <h2 className="text-lg font-bold text-white">
+                <h2 className="text-xl font-bold text-white drop-shadow-lg">
                   Plataforma de Operador
                 </h2>
-                <p className="mt-1 text-sm leading-relaxed text-white/70">
+                <p className="mt-2 text-sm leading-relaxed text-white/90 drop-shadow-md">
                   Gestion agil, segura y transparente para su proceso
                   de contratacion y pagos.
                 </p>
 
                 {/* Decorative Lines */}
                 <div className="mt-6 flex flex-col gap-2" aria-hidden="true">
-                  <div className="h-1 w-3/4 rounded-full bg-white/20" />
-                  <div className="h-1 w-1/2 rounded-full bg-white/15" />
-                  <div className="h-1 w-2/5 rounded-full bg-white/10" />
+                  <div className="h-1 w-3/4 rounded-full bg-white/40" />
+                  <div className="h-1 w-1/2 rounded-full bg-white/30" />
+                  <div className="h-1 w-2/5 rounded-full bg-white/20" />
                 </div>
               </div>
             </div>

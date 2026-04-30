@@ -1,8 +1,3 @@
-/**
- * Personal Data validation schema.
- * Uses Zod for runtime type-safe validation integrated with React Hook Form.
- */
-
 import { z } from "zod";
 
 const PHONE_REGEX = /^\+?[1-9]\d{6,14}$/;

@@ -1,8 +1,3 @@
-/**
- * Onboarding constants.
- * Centralized configuration values used across the onboarding flow.
- */
-
 import type { StepMetadata } from "@/types/onboarding";
 
 export const STEPS_CONFIG: readonly StepMetadata[] = [

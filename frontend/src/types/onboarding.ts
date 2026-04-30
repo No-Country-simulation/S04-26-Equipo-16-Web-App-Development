@@ -1,8 +1,3 @@
-/**
- * Onboarding domain types.
- * Defines the data structures used throughout the contractor onboarding flow.
- */
-
 export const ONBOARDING_STEPS = [
   "personal-data",
   "documents",

@@ -1,9 +1,3 @@
-/**
- * Onboarding store.
- * Manages the state of the contractor onboarding flow using Zustand.
- * Handles step progression, data persistence per step, and form state.
- */
-
 import { create } from "zustand";
 import type {
   OnboardingStep,

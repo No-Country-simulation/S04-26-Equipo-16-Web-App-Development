@@ -1,9 +1,3 @@
-/**
- * Onboarding layout.
- * Wraps all onboarding step pages with the shared header.
- * Provides the TooltipProvider context required by the header.
- */
-
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { OnboardingHeader } from "@/components/onboarding/onboarding-header";
 
@@ -19,7 +13,6 @@ export default function OnboardingLayout({
 }) {
   return (
     <TooltipProvider>
-      {/* Fondo gris muy bajito (zinc-50) sólido y limpio, sin patrones ni puntos */}
       <div className="flex min-h-screen flex-col bg-zinc-50">
         <OnboardingHeader />
         <main className="flex-1">{children}</main>

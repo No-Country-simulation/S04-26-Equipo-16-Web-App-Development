@@ -1,9 +1,3 @@
-/**
- * OnboardingStepper component.
- * Renders a numbered step indicator with connecting lines.
- * Visually communicates progress through the 5-step onboarding flow.
- */
-
 "use client";
 
 import { Fragment } from "react";
@@ -36,7 +30,6 @@ export function OnboardingStepper({
 
           return (
             <Fragment key={step.id}>
-              {/* Step Node */}
               <li className="relative flex flex-col items-center group">
                 <div
                   className={cn(
@@ -57,12 +50,10 @@ export function OnboardingStepper({
                   )}
                 </div>
                 
-                {/* Step Label (Absolute to prevent layout shift) */}
                 <div className="absolute top-10 sm:top-12 left-1/2 -translate-x-1/2 w-max text-center">
                   <span
                     className={cn(
                       "text-[10px] sm:text-xs font-semibold transition-colors duration-300",
-                      /* En movil solo mostramos el texto del paso actual para evitar superposicion */
                       !isCurrent && "hidden sm:block",
                       isCurrent && "text-primary",
                       isCompleted && "text-primary",
@@ -74,7 +65,6 @@ export function OnboardingStepper({
                 </div>
               </li>
 
-              {/* Connecting Line */}
               {index < STEPS_CONFIG.length - 1 && (
                 <li
                   className={cn(
@@ -88,7 +78,6 @@ export function OnboardingStepper({
           );
         })}
       </ol>
-      {/* Spacer to account for absolute positioned labels */}
       <div className="h-8 w-full" aria-hidden="true" />
     </nav>
   );

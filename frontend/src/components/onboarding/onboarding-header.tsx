@@ -1,4 +1,8 @@
-
+/**
+ * OnboardingHeader component.
+ * Top navigation bar for the contractor onboarding flow.
+ * Displays the NorthPay branding, current section label, and help action.
+ */
 
 "use client";
 

@@ -1,3 +1,10 @@
+/**
+ * PersonalDataForm component.
+ * Step 1 of the onboarding flow.
+ * Collects identity and contact information with real-time validation.
+ * Uses React Hook Form + Zod for schema-based validation.
+ */
+
 "use client";
 
 import { useForm } from "react-hook-form";

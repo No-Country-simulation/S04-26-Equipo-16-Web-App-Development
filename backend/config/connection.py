@@ -1,5 +1,5 @@
 from sqlalchemy import create_engine
-from sqlalchemy.orm import declarative_base, sessionmaker
+from sqlalchemy.orm import declarative_base, sessionmaker, Session
 from fastapi import Depends
 
 """URL DE CONEXION AL MOTOR DE BASE DE DATOS (Postgresql | sqlite | mysql)"""
@@ -20,4 +20,4 @@ def get_database():
         db.close()
 
 """CONSTANTE PARA UTILIZAR LA BASE DE DATOS PARA INYECTAR A LOS ENDPOINT"""
-DB_DEPENDS = Depends(get_database)
+DB_DEPENDS: Session  = Depends(get_database)

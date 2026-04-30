@@ -19,8 +19,7 @@ export default function OnboardingLayout({
 }) {
   return (
     <TooltipProvider>
-      {/* Fondo gris muy bajito (zinc-50) sólido y limpio, sin patrones ni puntos */}
-      <div className="flex min-h-screen flex-col bg-zinc-50">
+      <div className="flex min-h-screen flex-col bg-gradient-to-br from-slate-50 to-white">
         <OnboardingHeader />
         <main className="flex-1">{children}</main>
       </div>

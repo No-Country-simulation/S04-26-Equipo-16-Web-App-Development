@@ -6,7 +6,7 @@ from datetime import datetime
 
 class Roles(StrEnum):
     ADMIN = "ADMIN"
-    MODERATOR = "MODERATOR"
+    CLIENT = "CLIENT"
     OPERATOR = "OPERATOR"
     USER =  "USER"
 

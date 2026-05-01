@@ -1,2 +1,2 @@
-from .user import *
-from .contactors import *
+from .user import User
+from .contactors import Contractor

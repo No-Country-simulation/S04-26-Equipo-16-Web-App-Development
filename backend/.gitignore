@@ -1,0 +1,65 @@
+# =========================
+#  Python
+# =========================
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# =========================
+# Virtual environment
+# =========================
+.venv/
+venv/
+ENV/
+
+# =========================
+# Environment variables
+# =========================
+.env
+.env.local
+.env.*.local
+
+# =========================
+# Database files (SQLite fallback)
+# =========================
+*.db
+*.sqlite3
+
+# =========================
+# Alembic
+# =========================
+alembic/versions/*.pyc
+alembic/__pycache__/
+
+# =========================
+# Testing
+# =========================
+.pytest_cache/
+.coverage
+htmlcov/
+
+# =========================
+# IDE / Editor
+# =========================
+.vscode/
+.idea/
+*.swp
+
+# =========================
+# Dependencies (NO commitear)
+# =========================
+# requirements.txt SI se commitea normalmente, NO esto:
+# pip cache no se sube
+__pip_cache__/
+
+# =========================
+# Logs
+# =========================
+*.log
+
+# =========================
+# OS
+# =========================
+.DS_Store
+Thumbs.db

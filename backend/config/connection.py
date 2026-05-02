@@ -1,9 +1,18 @@
+import os
 from sqlalchemy import create_engine
 from sqlalchemy.orm import declarative_base, sessionmaker, Session
 from fastapi import Depends
+from dotenv import load_dotenv
+
+load_dotenv()
 
 """URL DE CONEXION AL MOTOR DE BASE DE DATOS (Postgresql | sqlite | mysql)"""
-engine = create_engine('sqlite:///database.db')
+DATABASE_URL = os.getenv("DATABASE_URL")
+
+if not DATABASE_URL:
+    raise ValueError("DATABASE_URL is not set")
+
+engine = create_engine(DATABASE_URL)
 
 """SE CREA LA SESION A LA BASE DE DATOS"""
 session = sessionmaker(engine, autoflush=False, autocommit=False)
@@ -12,6 +21,8 @@ session = sessionmaker(engine, autoflush=False, autocommit=False)
 Base = declarative_base()
 
 """GENERADOR DE DEPENDENCIA PARA OBTENER LA SESION DE LA BASE DE DATOS"""
+
+
 def get_database():
     try:
         db = session()
@@ -19,5 +30,6 @@ def get_database():
     finally:
         db.close()
 
+
 """CONSTANTE PARA UTILIZAR LA BASE DE DATOS PARA INYECTAR A LOS ENDPOINT"""
-DB_DEPENDS: Session  = Depends(get_database)
+DB_DEPENDS: Session = Depends(get_database)

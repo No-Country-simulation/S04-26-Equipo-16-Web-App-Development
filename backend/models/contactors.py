@@ -1,9 +1,8 @@
-from sqlalchemy import Integer, ForeignKey, String, Boolean, DateTime
-from sqlalchemy.orm import relationship, Mapped, mapped_column
-from backend.config.connection import Base
-from datetime import datetime
+from sqlalchemy import Integer
+from sqlalchemy.orm import Mapped, mapped_column
+from config.connection import Base
+
 
 class Contractor(Base):
-    __tablename__ = 'contractors'
-
-    pass
+    __tablename__ = "contractors"
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)

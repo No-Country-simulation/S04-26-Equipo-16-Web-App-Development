@@ -5,8 +5,14 @@ class UserRegisterScheme(BaseModel):
     email: str 
     password: str
     role: Roles 
-    is_active: bool
-    updated_at: str
 
 class UserLoginScheme(BaseModel):
-    pass
+    email: str
+    password: str
+
+
+class UserTokenData(BaseModel):
+    id: str
+    email: str
+    role: Roles
+    

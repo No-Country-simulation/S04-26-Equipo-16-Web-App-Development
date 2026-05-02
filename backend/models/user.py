@@ -1,11 +1,7 @@
 
-from sqlalchemy import Integer, ForeignKey, String, Boolean, DateTime
+from sqlalchemy import Integer, ForeignKey, String, Boolean, DateTime, Enum
 from sqlalchemy.orm import relationship, Mapped, mapped_column
 from backend.config.connection import Base
-
-from sqlalchemy import Integer, String, Boolean, DateTime, Enum
-from sqlalchemy.orm import Mapped, mapped_column
-from config.connection import Base
 from datetime import timezone, datetime
 from backend.utils.enum_roles import Roles
 

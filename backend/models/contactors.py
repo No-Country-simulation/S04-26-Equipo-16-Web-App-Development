@@ -1,6 +1,6 @@
 from sqlalchemy import Integer
 from sqlalchemy.orm import Mapped, mapped_column
-from config.connection import Base
+from backend.config.connection import Base
 
 
 class Contractor(Base):

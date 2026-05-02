@@ -4,7 +4,7 @@ from sqlalchemy.orm import declarative_base, sessionmaker, Session
 from fastapi import Depends
 from dotenv import load_dotenv
 
-load_dotenv()
+load_dotenv('backend/.env.example')
 
 """URL DE CONEXION AL MOTOR DE BASE DE DATOS (Postgresql | sqlite | mysql)"""
 DATABASE_URL = os.getenv("DATABASE_URL")

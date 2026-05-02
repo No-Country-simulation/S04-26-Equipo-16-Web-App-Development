@@ -53,6 +53,20 @@ def test_auth_register_unauthorized():
 
     assert response.status_code == 401
     app.dependency_overrides.clear()
+
+def test_auth_login_sucess():
+    app.dependency_overrides[get_database] = override_user_register_conflict
+    response = client.post(
+        "/api/auth/register",
+        json = {
+            "email": "test@gmail.com",
+            "password": "1234",
+            "role": Roles.OPERATOR.value
+        }
+    )
+
+    assert response.status_code == 401
+    app.dependency_overrides.clear()
   
  
     

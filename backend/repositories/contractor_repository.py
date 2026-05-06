@@ -1,5 +1,5 @@
 from sqlalchemy.orm import Session
-from backend.models.contractor import Contractor
+from models.contractor import Contractor
 
 
 class ContractorRepository:

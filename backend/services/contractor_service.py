@@ -1,13 +1,13 @@
 from sqlalchemy.orm import Session
 from datetime import datetime, timezone
 
-from backend.models.contractor import Contractor
-from backend.repositories.contractor_repository import ContractorRepository
+from models.contractor import Contractor
+from repositories.contractor_repository import ContractorRepository
 
-from backend.schemas.contractor_schema import ContractorCreate
+from schemas.contractor_schema import ContractorCreate
 
 # exceptions
-from backend.core.exceptions import (
+from core.exceptions import (
     NotFoundException,
     ConflictException,
     BadRequestException,

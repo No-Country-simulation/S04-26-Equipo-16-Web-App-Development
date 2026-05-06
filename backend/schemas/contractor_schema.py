@@ -2,7 +2,7 @@ from pydantic import BaseModel, Field, field_validator
 from datetime import date
 import re
 
-from backend.utils.enum_document_type import DocumentType
+from utils.enum_document_type import DocumentType
 
 
 class ContractorCreate(BaseModel):

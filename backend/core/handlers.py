@@ -5,7 +5,7 @@ from fastapi.responses import JSONResponse
 from fastapi.exceptions import RequestValidationError
 from sqlalchemy.exc import IntegrityError
 
-from backend.core.exceptions import AppException
+from core.exceptions import AppException
 
 
 # errores de negocio

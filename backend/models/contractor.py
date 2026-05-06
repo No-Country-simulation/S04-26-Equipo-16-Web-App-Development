@@ -1,8 +1,8 @@
 from sqlalchemy import Integer, ForeignKey, String, Boolean, DateTime, Enum
 from sqlalchemy.orm import Mapped, mapped_column
-from backend.config.connection import Base
+from config.connection import Base
 from datetime import datetime, timezone
-from backend.utils.enum_document_type import DocumentType
+from utils.enum_document_type import DocumentType
 
 
 class Contractor(Base):

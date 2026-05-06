@@ -18,7 +18,15 @@ from core.exceptions import AppException
 load_dotenv("../.env")
 
 app = FastAPI()
+
+
+@app.get("/")
+def root():
+    return {"message": "Good deploy 🚀"}
+
+
 app.include_router(api_router)
+
 # 👉 registro de handlers globales
 app.add_exception_handler(AppException, app_exception_handler)
 app.add_exception_handler(RequestValidationError, validation_exception_handler)

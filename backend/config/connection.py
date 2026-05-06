@@ -12,10 +12,10 @@ DATABASE_URL = os.getenv("DATABASE_URL")
 if not DATABASE_URL:
     raise ValueError("DATABASE_URL is not set")
 
-engine = create_engine(DATABASE_URL)
+engine = create_engine(DATABASE_URL, pool_pre_ping=True)
 
 """SE CREA LA SESION A LA BASE DE DATOS"""
-session = sessionmaker(engine, autoflush=False, autocommit=False)
+session = sessionmaker(bind=engine, autoflush=False, autocommit=False)
 
 """VARIABLE DECLARATIVA PARA LOS MODELOS BASE DE DATOS"""
 Base = declarative_base()

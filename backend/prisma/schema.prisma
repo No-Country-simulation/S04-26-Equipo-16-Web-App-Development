@@ -8,12 +8,45 @@ datasource db {
 }
 
 model User {
-  id    Int     @id @default(autoincrement())
+  id            String         @id @default(uuid()) @db.Uuid
   email         String         @unique
   passwordHash  String?        @map("password_hash")
   isActive      Boolean        @default(false) @map("is_active")
   createdAt     DateTime       @default(now()) @map("created_at")
   updatedAt     DateTime       @updatedAt @map("updated_at")
+
+  contractor    Contractor?
+  reviews       Review[]
+  notifications Notification[]
+  auditLogs     AuditLog[]
+
+  @@map("users")
+}
+
+model Contractor {
+  id                    String              @id @default(uuid()) @db.Uuid
+  userId                String              @unique @map("user_id") @db.Uuid
+  fullName              String              @map("full_name")
+  birthDate             DateTime            @map("birth_date") @db.Date
+  nationality           String
+  address               String
+  identificationNumber  String              @map("identification_number")
+  phone                 String
+  currentStep           Int                 @default(1) @map("current_step")
+  createdAt             DateTime            @default(now()) @map("created_at")
+  updatedAt             DateTime            @updatedAt @map("updated_at")
+
+  user                  User                @relation(fields: [userId], references: [id])
+
+  documents             Document[]
+  contracts             Contract[]
+  paymentMethods        PaymentMethod[]
+  kycVerifications      KycVerification[]
+  reviews               Review[]
+  auditLogs             AuditLog[]
+  processTimers         ProcessTimer[]
+
+  @@map("contractors")
 }
 
 model Invitation {
@@ -25,4 +58,106 @@ model Invitation {
   createdAt   DateTime  @default(now()) @map("created_at")
 
   @@map("invitations")
+}
+
+model Document {
+  id            String           @id @default(uuid()) @db.Uuid
+  contractorId  String           @map("contractor_id") @db.Uuid
+  fileUrl       String           @map("file_url")
+  createdAt     DateTime         @default(now()) @map("created_at")
+  contractor    Contractor       @relation(fields: [contractorId], references: [id])
+
+  @@map("documents")
+}
+
+model Contract {
+  id            String       @id @default(uuid()) @db.Uuid
+  contractorId  String       @map("contractor_id") @db.Uuid
+  contractUrl   String       @map("contract_url")
+  signed        Boolean      @default(false)
+  signedAt      DateTime?    @map("signed_at")
+  createdAt     DateTime     @default(now()) @map("created_at")
+
+  contractor    Contractor   @relation(fields: [contractorId], references: [id])
+
+  @@map("contracts")
+}
+
+model PaymentMethod {
+  id               String       @id @default(uuid()) @db.Uuid
+  contractorId     String       @map("contractor_id") @db.Uuid
+  methodType       String       @map("method_type")
+  accountHolder    String       @map("account_holder")
+  accountNumber    String       @map("account_number")
+  bankName         String       @map("bank_name")
+  validated        Boolean      @default(false)
+  createdAt        DateTime     @default(now()) @map("created_at")
+
+  contractor       Contractor   @relation(fields: [contractorId], references: [id])
+
+  @@map("payment_methods")
+}
+
+model KycVerification {
+  id                String       @id @default(uuid()) @db.Uuid
+  contractorId      String       @map("contractor_id") @db.Uuid
+  providerResponse  Json         @map("provider_response")
+  createdAt         DateTime     @default(now()) @map("created_at")
+  updatedAt         DateTime     @updatedAt @map("updated_at")
+
+  contractor        Contractor   @relation(fields: [contractorId], references: [id])
+
+  @@map("kyc_verifications")
+}
+
+model Review {
+  id             String            @id @default(uuid()) @db.Uuid
+  contractorId   String            @map("contractor_id") @db.Uuid
+  operatorId     String            @map("operator_id") @db.Uuid
+  comment        String?
+  createdAt      DateTime          @default(now()) @map("created_at")
+  contractor     Contractor        @relation(fields: [contractorId], references: [id])
+  operator       User              @relation(fields: [operatorId], references: [id])
+
+  @@map("reviews")
+}
+
+model Notification {
+  id          String             @id @default(uuid()) @db.Uuid
+  userId      String             @map("user_id") @db.Uuid
+  message     String
+  isRead      Boolean            @default(false) @map("is_read")
+  createdAt   DateTime           @default(now()) @map("created_at")
+
+  user        User               @relation(fields: [userId], references: [id])
+
+  @@map("notifications")
+}
+
+model AuditLog {
+  id              String        @id @default(uuid()) @db.Uuid
+  contractorId    String        @map("contractor_id") @db.Uuid
+  actorId         String        @map("actor_id") @db.Uuid
+  action          String
+  previousState   String?       @map("previous_state")
+  newState        String?       @map("new_state")
+  createdAt       DateTime      @default(now()) @map("created_at")
+
+  contractor      Contractor    @relation(fields: [contractorId], references: [id])
+  actor           User          @relation(fields: [actorId], references: [id])
+
+  @@map("audit_logs")
+}
+
+model ProcessTimer {
+  id               String        @id @default(uuid()) @db.Uuid
+  contractorId     String        @map("contractor_id") @db.Uuid
+  startedAt        DateTime      @map("started_at")
+  lastActivityAt   DateTime      @map("last_activity_at")
+  expiresAt        DateTime      @map("expires_at")
+  escalated        Boolean       @default(false)
+
+  contractor       Contractor    @relation(fields: [contractorId], references: [id])
+
+  @@map("process_timers")
 }

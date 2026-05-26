@@ -1,11 +1,8 @@
-import express from "express";
+import app from "./app";
+import "dotenv/config";
 
-const app = express();
+const PORT = process.env.PORT;
 
-app.get("/", (_, res) => {
-  res.send("Backend funcionando");
-});
-
-app.listen(3000, () => {
-  console.log("Servidor en puerto 3000");
+app.listen(PORT, () => {
+  console.log(`Servidor en puerto ${PORT}`);
 });

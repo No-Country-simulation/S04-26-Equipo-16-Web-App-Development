@@ -1,5 +1,4 @@
 "use client"
-
 import {useExampleStore as useBear} from '../store/exampleStore'
 
 
